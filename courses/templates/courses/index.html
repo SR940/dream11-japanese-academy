@@ -45,12 +45,16 @@
                 <li class="nav-menu-item"><a class="btn-nav-action" href="{% url 'contact' %}">Contact Now</a></li>
             <!--  Universal Multi-Language Select Option Form Matrix -->
             
-                <li class="nav-menu-item">
-                    <select id="googleLanguageSelector" class="lang-dropdown-select">
-                        <option value="en">English</option>
-                        <option value="ja">日本語</option>
-                    </select>
-                </li>
+                <!-- 💡 FIXED: Uses an unblockable inline onchange execution line to bypass background runtime script freezes -->
+            <li class="nav-menu-item">
+                <select id="googleLanguageSelector" 
+                        onchange="if(this.value==='ja'){ window.location.href='https://google.com; }" 
+                        style="background-color: #1e293b !important; color: #ffffff !important; border: 1px solid #475569 !important; padding: 6px 12px !important; border-radius: 8px !important; font-weight: 600 !important; font-size: 0.85rem !important; cursor: pointer !important; outline: none !important;">
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                </select>
+            </li>
+
 
             </ul>
 
@@ -237,8 +241,8 @@
     </footer>
 
     <!-- Pure JavaScript Mobile Menu Toggle Action Engine -->
-    <!--<script-->
-    <script type="text/javascript">
+    <!--
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggleBtn = document.getElementById('menuToggleBtn');
             const dropdownNavMenu = document.getElementById('dropdownNavMenu');
@@ -273,42 +277,46 @@
             }
         }
     });
+    </script> -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Mobile Hamburger Menu Toggle Action Tracker
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const dropdownNavMenu = document.getElementById('dropdownNavMenu');
 
-   
-        <!-- 💡 CLOUD TRANSLATION ENGINE ROUTER: Automatically redirects through Google Translate -->
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            const selector = document.getElementById("googleLanguageSelector");
-            
-            if (selector) {
-                // Automatically keeps the select dropdown set to "日本語" if already inside the translated sandbox view
-                if (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com")) {
-                    selector.value = "ja";
-                }
-
-                // Listens for active user selection clicks
-                selector.addEventListener("change", function () {
-                    if (this.value === "ja") {
-                        // Dynamically fetches your live Render URL pathway (e.g., https://onrender.com)
-                        let currentUrl = window.location.href;
-                        
-                        // If already on an old translate path, strip it back to raw structure first
-                        if (currentUrl.includes("://google.com")) {
-                            return; 
-                        }
-                        
-                        // Forces the entire site framework and database text columns to turn to Japanese instantly
-                        window.location.href = "https://://google.com/translate?sl=en&tl=ja&u=" + encodeURIComponent(currentUrl);
-                    } else if (this.value === "en") {
-                        // Safely breaks out of the Google translation sandbox and returns to your raw English framework
-                        if (window.location.host.includes("translate.goog")) {
-                            window.location.href = "https://onrender.com";
-                        }
-                    }
+            if (menuToggleBtn && dropdownNavMenu) {
+                menuToggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownNavMenu.classList.toggle('active');
+                    menuToggleBtn.classList.toggle('open');
                 });
+            }
+
+            // 2. Automated Smart Slider Animation Engine Core
+            const track = document.getElementById('dynamicSlideshowTrack');
+            if (track) {
+                const totalSlides = {% if slides %}{{ slides.count }}{% else %}1{% endif %};
+                let currentIndex = 0;
+
+                if (totalSlides > 1) {
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                        const movePercentage = (currentIndex * (100 / totalSlides));
+                        track.style.transform = `translateX(-${movePercentage}%)`;
+                    }, 4000);
+                }
+            }
+
+            // 3. FIXED LANGUAGE DROPDOWN STATUS RESET LAYER
+            // Automatically locks your navbar select element visual state back to "日本語" 
+            // if Google Translate's proxy wrapper reloads the webpage layout in the cloud
+            const selector = document.getElementById("googleLanguageSelector");
+            if (selector && (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com"))) {
+                selector.value = "ja";
             }
         });
     </script>
+
 </body>
 </html>
 
