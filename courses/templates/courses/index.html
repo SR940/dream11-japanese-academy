@@ -276,20 +276,35 @@
     </script>
         <!-- 💡 CLOUD TRANSLATION ENGINE ROUTER: Automatically redirects through Google Translate -->
     <script type="text/javascript">
-        function switchWebsiteLanguage(langCode) {
-            if (langCode === 'ja') {
-                // Gets your current page URL (e.g., http://192.168.0)
-                const currentUrl = window.location.href;
-                // Forces the entire page view to translate into Japanese instantly in a clean sandbox view
-                window.location.href = 'https://google.com' + encodeURIComponent(currentUrl);
-            }
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const selector = document.getElementById("googleLanguageSelector");
+            
+            if (selector) {
+                // Automatically keeps the select dropdown set to "日本語" if already inside the translated sandbox view
+                if (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com")) {
+                    selector.value = "ja";
+                }
 
-        // Keeps the dropdown option visually synchronized based on the current active view state parameters
-        document.addEventListener("DOMContentLoaded", function() {
-            const selector = document.getElementById('languageDropdownSelector');
-            if (selector && window.location.href.includes('://google.com')) {
-                selector.value = 'ja';
+                // Listens for active user selection clicks
+                selector.addEventListener("change", function () {
+                    if (this.value === "ja") {
+                        // Dynamically fetches your live Render URL pathway (e.g., https://onrender.com)
+                        let currentUrl = window.location.href;
+                        
+                        // If already on an old translate path, strip it back to raw structure first
+                        if (currentUrl.includes("://google.com")) {
+                            return; 
+                        }
+                        
+                        // Forces the entire site framework and database text columns to turn to Japanese instantly
+                        window.location.href = "https://://google.com/translate?sl=en&tl=ja&u=" + encodeURIComponent(currentUrl);
+                    } else if (this.value === "en") {
+                        // Safely breaks out of the Google translation sandbox and returns to your raw English framework
+                        if (window.location.host.includes("translate.goog")) {
+                            window.location.href = "https://onrender.com";
+                        }
+                    }
+                });
             }
         });
     </script>
