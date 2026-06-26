@@ -43,20 +43,9 @@
 
 
                 <li class="nav-menu-item"><a class="btn-nav-action" href="{% url 'contact' %}">Contact Now</a></li>
-            <!--  Universal Multi-Language Select Option Form Matrix -->
             
-                <!-- 💡 FIXED: Uses an unblockable inline onchange execution line to bypass background runtime script freezes -->
-            <li class="nav-menu-item">
-                <select id="googleLanguageSelector" 
-                        onchange="if(this.value==='ja'){ window.location.href='https://google.com; }" 
-                        style="background-color: #1e293b !important; color: #ffffff !important; border: 1px solid #475569 !important; padding: 6px 12px !important; border-radius: 8px !important; font-weight: 600 !important; font-size: 0.85rem !important; cursor: pointer !important; outline: none !important;">
-                    <option value="en">English</option>
-                    <option value="ja">日本語</option>
-                </select>
-            </li>
-
-
-            </ul>
+            
+             </ul>
 
 
 
@@ -307,12 +296,6 @@
                 }
             }
 
-            // 3. FIXED LANGUAGE DROPDOWN STATUS RESET LAYER
-            // Automatically locks your navbar select element visual state back to "日本語" 
-            // if Google Translate's proxy wrapper reloads the webpage layout in the cloud
-            const selector = document.getElementById("googleLanguageSelector");
-            if (selector && (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com"))) {
-                selector.value = "ja";
             }
         });
     </script>
