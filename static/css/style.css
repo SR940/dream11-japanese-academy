@@ -996,4 +996,34 @@ body {
     }
 }
 
+/* ==========================================================================
+   16. PREMIUM DROPDOWN NAV SELECTOR STYLES
+   ========================================================================== */
+.lang-dropdown-select {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border: 1px solid #475569 !important;
+    padding: 6px 12px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: border-color 0.2s ease;
+}
+
+.lang-dropdown-select:hover {
+    border-color: #ef4444 !important; /* Highlights academy red accent on hover */
+}
+
+@media (max-width: 991px) {
+    .lang-dropdown-select {
+        width: 80% !important;
+        padding: 10px !important;
+        font-size: 0.95rem !important;
+        text-align: center;
+        margin: 10px auto !important;
+        display: block !important;
+    }
+}
 
