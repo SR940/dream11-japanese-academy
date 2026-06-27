@@ -942,46 +942,7 @@ body {
     }
 }
 
-/* ==========================================================================
-   15. AUTOMATIC GOOGLE TRANSLATE DROPDOWN ALIGNMENTS
-   ========================================================================== */
-#google_translate_element {
-    display: inline-block;
-    vertical-align: middle;
-}
 
-/* Styles the internal Google select box container */
-.goog-te-gadget-simple {
-    background-color: #ffffff !important; /* Fits your dark slate slate palette */
-    border: 1px solid #d1d9e3 !important;
-    padding: 6px 10px !important;
-    border-radius: 8px !important;
-    font-family: inherit !important;
-    cursor: pointer;
-}
-
-.goog-te-gadget-simple span {
-    color: #ffffff !important; /* Makes Google dropdown text crisp white */
-    font-weight: 600 !important;
-    font-size: 0.85rem !important;
-}
-
-/* Hides the clunky Google logo icon inside the menu item badge to keep it premium */
-.goog-te-gadget-icon {
-    display: none !important;
-}
-
-@media (max-width: 991px) {
-    #google_translate_element {
-        margin: 10px 0 !important;
-        display: block !important;
-    }
-    .goog-te-gadget-simple {
-        width: 80% !important;
-        padding: 10px !important;
-        text-align: center;
-    }
-}
 /* ==========================================================================
    15. MOBILE NAVIGATION STACK ALIGNMENT FOR THE SELECT DROPDOWN CONTAINER
    ========================================================================== */
