@@ -1,0 +1,287 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream 11 Japanese Language Academy</title>
+    <!-- Connects cleanly to your external static CSS stylesheet tracking file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- Redesigned Responsive Header Navbar -->
+    <nav class="navbar-custom">
+
+        <div class="navbar-container">
+            <a class="brand-wrapper" href="{% url 'home' %}">
+                <img src="{% static 'logo.jpg' %}" alt="Academy Logo" class="brand-logo-img">
+
+                <!-- Desktop brand wording style -->
+                <span class="brand-text-desktop">DREAM 11 <span style="color: #ef4444;">JAPANESE LANGUAGE </span>ACADEMY</span>
+
+                <!-- Mobile brand wording fallback to prevent truncation cuts -->
+             </a>
+
+            <!-- Mobile Menu Toggle Button (Controlled via CSS Breakpoint Media Engine) -->
+            <button class="mobile-menu-toggle" id="menuToggleBtn" aria-label="Toggle Navigation Menu">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+
+            <!-- Link Matrix Array -->
+                        <!-- Link Matrix Array for Home Page Template -->
+                        <!-- Link Matrix Array with Clean Dynamic Cloud Translation Router -->
+            <ul class="nav-menu-list" id="dropdownNavMenu">
+                <li class="nav-menu-item {% if request.resolver_match.url_name == 'home' %}nav-active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-menu-item {% if request.resolver_match.url_name == 'about' %}nav-active{% endif %}"><a href="{% url 'about' %}">About Us</a></li>
+                <li class="nav-menu-item {% if request.resolver_match.url_name == 'services' %}nav-active{% endif %}"><a href="{% url 'services' %}">Services</a></li>
+                <li class="nav-menu-item {% if request.resolver_match.url_name == 'jlpt_info' %}nav-active{% endif %}"><a href="{% url 'jlpt_info' %}">JLPT Info</a></li>
+
+
+                <li class="nav-menu-item"><a class="btn-nav-action" href="{% url 'contact' %}">Contact Now</a></li>
+            <!--  Universal Multi-Language Select Option Form Matrix -->
+            <!-- 💡 FIXED: Explicit ID and localized option value keys -->
+<!-- 💡 FIXED: Uses an unblockable inline onchange execution line to bypass background runtime script freezes -->
+<li class="nav-menu-item">
+    <select id="googleLanguageSelector"
+            onchange="if(this.value==='ja'){ window.location.href='https://google.com; }"
+            style="background-color: #1e293b !important; color: #ffffff !important; border: 1px solid #475569 !important; padding: 6px 12px !important; border-radius: 8px !important; font-weight: 600 !important; font-size: 0.85rem !important; cursor: pointer !important; outline: none !important;">
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+    </select>
+</li>
+
+
+            </ul>
+
+
+
+        </div>
+    </nav>
+
+    <!-- Header Hero Banner Layout -->
+    <header class="hero-banner">
+
+        <h1>Master Japanese From Anywhere</h1>
+        <p style="color: #cbd5e1; max-width: 650px; margin: 15px auto 0 auto; line-height: 1.6; font-size: 1.05rem;">
+            Expert courses targeted meticulously toward passing JLPT N5 through N1 tiers successfully.
+        </p>
+    </header>
+
+    <!-- Fully Dynamic Slideshow Card Section -->
+<div class="slideshow-card-container">
+    <div class="slideshow-card">
+        <div class="slideshow-viewport">
+            <!-- Automatically calculates the true tracking width based on how many slides you uploaded -->
+            <div class="slideshow-track" style="width: {% if slides %}{{ slides.count }}{% else %}4{% endif %}00%;" id="dynamicSlideshowTrack">
+                {% for slide in slides %}
+                <!-- Calculates the precise pixel division math per slide frame -->
+                <div class="slide-frame" style="width: calc(100% / {% if slides %}{{ slides.count }}{% else %}4{% endif %});">
+                    {% if slide.image %}
+                        <img src="{{ slide.image.url }}" alt="{{ slide.caption }}">
+                    {% endif %}
+                    <div class="slide-caption-overlay">🌸 {{ slide.caption }}</div>
+                </div>
+                {% empty %}
+                <!-- Fallback System Default Slide Case -->
+                <div class="slide-frame" style="width: 25%;">
+                    <img src="https://unsplash.com" alt="Default">
+                    <div class="slide-caption-overlay">🌸 Core Japanese Language Learning Batches</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Available Course Packages Block -->
+    <div class="section-title-area">
+        <h2>Available Course Packages</h2>
+        <div class="section-title-underline"></div>
+    </div>
+
+    <!-- Active Courses Grid Loop Interface -->
+    <main class="cards-container-grid">
+        {% for course in courses %}
+        <div class="premium-course-card">
+            <div>
+                <span class="card-level-badge">{{ course.get_level_display }}</span>
+                <h3 class="card-course-title">{{ course.title }}</h3>
+                <p class="card-course-description">{{ course.description }}</p>
+            </div>
+            <div>
+                <div class="card-divider-line"></div>
+                <div class="card-metadata-row">
+                    <div>
+                        <span class="meta-item-label">Timeline</span>
+                        <div class="meta-item-value">{{ course.duration_weeks }} Weeks</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="meta-item-label">Price</span>
+                        <div class="meta-item-price">{{ course.price }} Tk.</div>
+                    </div>
+                </div>
+                <a href="{% url 'course_detail' course.id %}" class="btn-card-trigger">
+                    View Syllabus & Schedule
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div style="text-align: center; color: #64748b; padding: 40px 0; width: 100%; grid-column: 1 / -1;">
+            No active course packages are currently configured online. Call administrative offices directly.
+        </div>
+        {% endfor %}
+    </main>
+
+    <!-- Services Overview Block Grid Section -->
+    <div class="section-title-area" style="margin-top: 40px;">
+        <h2>Our Specialized Institutional Services</h2>
+        <div class="section-title-underline"></div>
+    </div>
+
+    <section class="cards-container-grid">
+        <div class="premium-course-card" style="min-height: auto; padding: 30px;">
+            <div>
+                <span class="card-level-badge" style="background-color: #e0f2fe; color: #0369a1;">LANGUAGE INTENSIVE</span>
+                <h3 class="card-course-title" style="font-size: 1.2rem;">🇯🇵 Japanese Language Teaching</h3>
+                <p class="card-course-description" style="font-size: 0.9rem; margin-bottom: 0;">
+                    Structured language programs tailored entirely around exam-passing blueprints for the global JLPT tests.
+                </p>
+            </div>
+        </div>
+
+        <div class="premium-course-card" style="min-height: auto; padding: 30px;">
+            <div>
+                <span class="card-level-badge" style="background-color: #ecfdf5; color: #047857;">EDUCATION SUPPORT</span>
+                <h3 class="card-course-title" style="font-size: 1.2rem;">🎓 Student Visa Processing</h3>
+                <p class="card-course-description" style="font-size: 0.9rem; margin-bottom: 0;">
+                    Complete end-to-end Certificate of Eligibility (COE) mapping file compiles and institutional student placements.
+                </p>
+            </div>
+        </div>
+
+        <div class="premium-course-card" style="min-height: auto; padding: 30px;">
+            <div>
+                <span class="card-level-badge" style="background-color: #fef3c7; color: #b45309;">SKILLED WORKER ROUTE</span>
+                <h3 class="card-course-title" style="font-size: 1.2rem;">💼 SSW Visa Processing Support</h3>
+                <p class="card-course-description" style="font-size: 0.9rem; margin-bottom: 0;">
+                    Professional training for targeted skills exam tracking paired with absolute direct enterprise job matching.
+                </p>
+            </div>
+        </div>
+
+        <div class="premium-course-card" style="min-height: auto; padding: 30px;">
+            <div>
+                <span class="card-level-badge" style="background-color: #faf5ff; color: #6b21a8;">TECHNICAL INTERNSHIP</span>
+                <h3 class="card-course-title" style="font-size: 1.2rem;">🛠️ TITP Visa Processing Track</h3>
+                <p class="card-course-description" style="font-size: 0.9rem; margin-bottom: 0;">
+                    Institutional sender operations and visa processing support for structured technical intern deployments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Layout System Footer Section -->
+        <!-- Polished Structural Footer Grid Layout -->
+    <footer class="premium-academy-footer">
+        <div class="footer-grid-container">
+
+            <!-- Column 1 -->
+            <div class="footer-grid-column">
+                <div class="footer-brand-title" style="font-size: 16px;">DREAM 11 <span style="color: #ef4444;">JAPANESE LANGUAGE </span>ACADEMY</div>
+                <p class="footer-column-text">Empowering language learners to unlock professional and academic career opportunities in Japan seamlessly.</p>
+            </div>
+
+            <!-- Column 2 -->
+                        <!-- Column 2: Exact Location & Contact Address Details -->
+            <div style="flex: 1 !important; min-width: 280px !important; box-sizing: border-box !important; margin-bottom: 20px;">
+                <!-- 💡 FIXED: Separated text heading from the inline icon element so they align perfectly on a single line -->
+                <div style="font-weight: 700; font-size: 1.05rem; color: #ffffff; margin-bottom: 15px; letter-spacing: 1px; display: flex; align-items: center; ">
+                    <span class="fa fa-map-marker" style="color: #ef4444; font-size: 1.25rem;"></span>Our Campus Location
+                </div>
+                <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; margin-left: 15px;">
+                    <strong style="color: #ffffff;">Gulakandail Main Campus:</strong><br>
+                    Haji Shopping Complex, 4th floor ,<br>
+                    Bhulta, Gauchia, Golakandail-1462, <br>Rupgonj, Narayangonj, Bangladesh <br>
+                    <span style="display: block; margin-top: 8px;">📞 <strong style="color: #ffffff;">Phone:</strong> +880 1999-229951</span>
+                </p>
+            </div>
+
+
+            <!-- Column 3 -->
+            <div class="footer-grid-column">
+                <div class="footer-column-heading">📱 Follow Us</div>
+                <p class="footer-column-text">Stay updated with our latest intensive language batches, visa intake drops, and success student tracks:</p>
+                <div class="footer-social-row">
+                    <a href="https://www.facebook.com/dream.11.academy" class="fa fa-facebook" target="_blank"></a>
+                    <a href="whatsapp://send?phone=8801999229951" class="fa fa-whatsapp" target="_blank"></a>
+                    <!-- 💡 FIXED: Added mailto: so it opens separately in the user's mail application, not inside your website -->
+<!-- 💡 FIXED: Uses an explicit target assignment combined with an alternative click event layer.
+     This forces laptops to safely spawn a fresh New Tab separately, and forces Android/iOS smartphones to exit the browser and launch the actual Gmail App instantly! -->
+<a href="mailto:dream2011.info@gmail.com"
+   target="_blank"
+   onclick="window.open(this.href); return false;"
+   class="fa fa-envelope"
+   aria-label="Email Dream 11 Academy"></a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-copyright-divider"></div>
+        <p style="margin: 0; font-size: 0.85rem; color: #64748b; text-align: center;">
+            &copy; 2026 Dream 11 Japanese Language Academy. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- Pure JavaScript Mobile Menu Toggle Action Engine -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Mobile Hamburger Menu Toggle Action Tracker
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const dropdownNavMenu = document.getElementById('dropdownNavMenu');
+
+            if (menuToggleBtn && dropdownNavMenu) {
+                menuToggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdownNavMenu.classList.toggle('active');
+                    menuToggleBtn.classList.toggle('open');
+                });
+            }
+
+            // 2. Automated Smart Slider Animation Engine Core
+            const track = document.getElementById('dynamicSlideshowTrack');
+            if (track) {
+                const totalSlides = {% if slides %}{{ slides.count }}{% else %}1{% endif %};
+                let currentIndex = 0;
+
+                if (totalSlides > 1) {
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                        const movePercentage = (currentIndex * (100 / totalSlides));
+                        track.style.transform = `translateX(-${movePercentage}%)`;
+                    }, 4000);
+                }
+            }
+
+            // 3. FIXED LANGUAGE DROPDOWN STATUS RESET LAYER
+            // Automatically locks your navbar select element visual state back to "日本語"
+            // if Google Translate's proxy wrapper reloads the webpage layout in the cloud
+            const selector = document.getElementById("googleLanguageSelector");
+            if (selector && (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com"))) {
+                selector.value = "ja";
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+</body>
+</html>
