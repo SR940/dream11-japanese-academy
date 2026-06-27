@@ -43,9 +43,20 @@
 
 
                 <li class="nav-menu-item"><a class="btn-nav-action" href="{% url 'contact' %}">Contact Now</a></li>
-            
-            
-             </ul>
+            <!--  Universal Multi-Language Select Option Form Matrix -->
+            <!-- 💡 FIXED: Explicit ID and localized option value keys -->
+<!-- 💡 FIXED: Uses an unblockable inline onchange execution line to bypass background runtime script freezes -->
+<li class="nav-menu-item">
+    <select id="googleLanguageSelector"
+            onchange="if(this.value==='ja'){ window.location.href='https://google.com; }"
+            style="background-color: #1e293b !important; color: #ffffff !important; border: 1px solid #475569 !important; padding: 6px 12px !important; border-radius: 8px !important; font-weight: 600 !important; font-size: 0.85rem !important; cursor: pointer !important; outline: none !important;">
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+    </select>
+</li>
+
+
+            </ul>
 
 
 
@@ -230,43 +241,6 @@
     </footer>
 
     <!-- Pure JavaScript Mobile Menu Toggle Action Engine -->
-    <!--
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggleBtn = document.getElementById('menuToggleBtn');
-            const dropdownNavMenu = document.getElementById('dropdownNavMenu');
-
-            if (menuToggleBtn && dropdownNavMenu) {
-                menuToggleBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Smoothly activates the sliding layout classes on click event targets across mobile Android devices
-                    dropdownNavMenu.classList.toggle('active');
-                    menuToggleBtn.classList.toggle('open');
-                });
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-        // ... Keep your existing mobile hamburger toggle code block active here ...
-
-        // Automated Flexible Smart Slideshow Engine Core
-        const track = document.getElementById('dynamicSlideshowTrack');
-        if (track) {
-            const totalSlides = {% if slides %}{{ slides.count }}{% else %}1{% endif %};
-            let currentIndex = 0;
-
-            // Only execute animations if you have uploaded more than 1 photo!
-            if (totalSlides > 1) {
-                setInterval(() => {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                    // Moves the percentage slider track mathematically across the relative x-axis
-                    const movePercentage = (currentIndex * (100 / totalSlides));
-                    track.style.transform = `translateX(-${movePercentage}%)`;
-                }, 4000); // Transitions safely automatically every 4 seconds sharp
-            }
-        }
-    });
-    </script> -->
         <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 1. Mobile Hamburger Menu Toggle Action Tracker
@@ -296,6 +270,12 @@
                 }
             }
 
+            // 3. FIXED LANGUAGE DROPDOWN STATUS RESET LAYER
+            // Automatically locks your navbar select element visual state back to "日本語"
+            // if Google Translate's proxy wrapper reloads the webpage layout in the cloud
+            const selector = document.getElementById("googleLanguageSelector");
+            if (selector && (window.location.host.includes("translate.goog") || window.location.href.includes("://google.com"))) {
+                selector.value = "ja";
             }
         });
     </script>
