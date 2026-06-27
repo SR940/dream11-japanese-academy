@@ -975,6 +975,7 @@ body {
     width: 100% !important;
     height: 100% !important;
 }
+/*-----------------*/
 .brand-wrapper {
     display: flex;
     align-items: center;
@@ -1032,4 +1033,25 @@ body {
     font-size: 0.75rem;
     margin: 0 2px;
 }
+
+/* ==========================================================================
+   💡 MOBILE RESPONSIVENESS OVERRIDES
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Normalizes the scene margin so it drops perfectly into line with the split text rows */
+    .coin-scene-container {
+        margin: 0 4px !important;
+        vertical-align: baseline !important;
+    }
+
+    /* 2. Automatically scales the coin sizes down on mobile so it never overlaps neighboring words */
+    .brand-wrapper .flipping-coin-ele {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 1rem !important;
+        line-height: 18px !important;
+        border-width: 1px !important;
+    }
+}
+
 
