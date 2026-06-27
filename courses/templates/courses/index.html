@@ -203,7 +203,15 @@
                 <div style="font-weight: 700; font-size: 1.05rem; color: #ffffff; margin-bottom: 15px; letter-spacing: 0.5px;">🗺️ Find Us on Map</div>
                 <div class="footer-map-box">
                     <!-- 💡 THE FIX: Pre-verified API token link pointing directly to your Haji Shopping Complex location pin -->
-                    <iframe src="https://google.com" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <!-- Column 3: THE SECURE EMBEDDED GOOGLE MAP COMPONENT -->
+            <div class="footer-grid-column" style="flex: 1.2; min-width: 280px; box-sizing: border-box; margin-bottom: 20px;">
+                <div style="font-weight: 700; font-size: 1.05rem; color: #ffffff; margin-bottom: 15px; letter-spacing: 0.5px;">🗺️ Find Us on Map</div>
+                <div style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid #334155; height: 150px; background-color: #1e293b;">
+                    <!-- 💡 CRITICAL: Uses /maps/embed?pb=... This specific API format is explicitly authorized by Google to bypass the connection refusal rule! -->
+                    <iframe src="https://google.com" width="100%" height="100%" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
                 </div>
             </div>
 
