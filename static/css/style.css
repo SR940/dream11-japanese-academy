@@ -975,4 +975,61 @@ body {
     width: 100% !important;
     height: 100% !important;
 }
+.brand-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 0 10px rgb(255, 255, 255), inset 0 0 4px rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+}
+
+/* 3D scene box container context */
+.coin-scene-container {
+    perspective: 1000px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -19px 4px;
+}
+
+/* The actual physical coin asset structure layer */
+.flipping-coin-ele {
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle, #ffffff 0%, #ffffff 70%, #f5f4f3 100%);
+    border: 2px solid #fcfcfc;
+    border-radius: 50%;
+    color: #b40707;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 32px;
+    text-align: center;
+    box-shadow: 0 0 10px rgb(255, 255, 255), inset 0 0 4px rgba(255, 255, 255, 0.45);
+    display: inline-block;
+
+    /* 💡 AUTOMATED ENGINE TIMING: Executes a complete 3D Y-axis flip rotation cycle smoothly every 4 seconds indefinitely */
+    animation: autoSpinCoinLoop 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform-style: preserve-3d;
+}
+
+/* Defines the automatic rotation keyframe coordinates across the relative Y-Axis */
+@keyframes autoSpinCoinLoop {
+    0%, 75% {
+        transform: rotateY(0deg);
+    }
+    85% {
+        transform: rotateY(360deg); /* Performs an accelerated clean flip transition */
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Adjusts the coin size formatting row seamlessly inside your darker footer section view */
+.footer-coin-ele {
+    width: 22px;
+    height: 22px;
+    line-height: 18px;
+    font-size: 0.75rem;
+    margin: 0 2px;
+}
 
