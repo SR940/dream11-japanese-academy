@@ -78,5 +78,19 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS', '')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# ==========================================================================
+# AUTOMATED DISPATCH EMAIL CONFIGURATION ENGINE
+# ==========================================================================
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '://gmail.com' # Standard Gmail routing node
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# 💡 CRITICAL PRODUCTION DATA SEGMENTS
+EMAIL_HOST_USER = 'dream2011.info@gmail.com' 
+# Leave this variable blank here for security, we will lock it in your Render settings!
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '') 
+DEFAULT_FROM_EMAIL = f'Dream 11 Academy <{EMAIL_HOST_USER}>'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
